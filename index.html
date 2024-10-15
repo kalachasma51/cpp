@@ -1,0 +1,547 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>jsf</title>
+</head>
+     <style>
+          body {
+            background-color: black;
+        }
+        pre {
+            color: white;
+        }
+    </style>
+<body>
+    <pre>
+
+
+
+1.
+
+#include <iostream>
+using namespace std;
+class BankAccount
+{
+	char name[20];
+	int accno;
+	int balance;
+public:
+	void read()
+	{
+		cout<<"Enter name"<<endl;
+		cin>>name;
+		cout<<"Enter Accno"<<endl;
+		cin>>accno;
+		cout<<"Enter Balance"<<endl;
+		cin>>balance;
+	}
+	void print()
+	{
+		cout<<"Name: "<<name<<endl;
+		cout<<"Account Number: "<<accno<<endl;
+		cout<<"Balance: "<<balance<<endl;
+	}
+	void deposit()
+	{
+		int amount;
+		cout<<"Enter amount"<<endl;
+		cin>>amount;
+		balance=balance+amount;
+	}
+	void withdraw()
+	{
+		int amount;
+		cout<<"Enter amount to withdraw"<<endl;
+		cin>>amount;
+		if(amount>balance)
+		{
+			cout<<"Insufficient"<<endl;
+		}
+		else
+		{
+			balance=balance-amount;
+		}
+	}
+	void put_balance()
+	{
+		cout<<"Account balance is: "<<balance<<endl;
+	}
+};
+int main()
+{
+	BankAccount b1;
+	b1.read();
+	b1.print();
+	b1.deposit();
+	b1.withdraw();
+	b1.put_balance();
+	return 0;
+}
+                                   
+
+2.
+#include <iostream>
+using namespace std;
+class COMPLEX
+{
+private:
+	int r, i;
+public:
+	void read();
+	void disp();
+	friend COMPLEX ADD(int x, COMPLEX c);
+	friend COMPLEX ADD(COMPLEX c1,COMPLEX c2);
+};
+void COMPLEX::read()
+{
+	cin>>r>>i;
+}
+void COMPLEX::disp()
+{
+	cout<<r<<"+"<<i<<"i";
+}
+COMPLEX ADD(int x, COMPLEX c)
+{
+	COMPLEX t;
+	t.r=x+c.r;
+	t.i=c.i;
+	return t;
+}
+COMPLEX ADD(COMPLEX c1,COMPLEX c2)
+{
+	COMPLEX t;
+	t.r=c1.r+c2.r;
+	t.i=c1.i+c2.i;
+	return t;
+}
+int main()
+{
+	COMPLEX c1,c2,c3,c4;
+	int a;
+	cout<<"Enter 1st Complex no :";
+	c1.read();
+	cout<<"Enter 2nd Complex no :";
+	c2.read();
+	cout<<"Enter the value of a:";
+	cin>>a;
+	c3=ADD(a,c2);
+	c4=ADD(c1,c2);
+	cout<<"\n1st Complex no :";
+	c1.disp();
+	cout<<"\n2nd Complex no :";
+	c2.disp();
+	cout<<"\n\nADD(a,c2) :";
+	c3.disp();
+	cout<<"\nADD(c1,c2) :";
+	c4.disp();
+	return 0;
+}
+
+
+3.
+
+#include <iostream>
+using namespace std;
+class Time
+{
+	int hours;
+	int minutes;
+public:
+	void read(int h,int m)
+	{
+		hours=h;
+		minutes=m;
+	}
+	void put()
+	{
+		cout<<"hours: "<<hours<<endl;
+		cout<<"minutes: "<<minutes<<endl;
+	}
+	void compute(Time t1,Time t2)
+	{
+		int h=(t1.minutes+t2.minutes)/60;
+		minutes=(t1.minutes+t2.minutes)%60;
+		hours=t1.hours+t2.hours+h;
+	}
+};
+int main()
+{
+	Time A,B,C;
+	A.read(4,40);
+	B.read(4,40);
+	cout<<"A: "<<endl;
+	A.put();
+	cout<<"B: "<<endl;
+	B.put();
+	C.compute(A,B);
+	cout<<"C: "<<endl;
+	C.put();
+	return 0;
+}
+
+
+
+
+
+
+  4.
+
+#include <iostream>
+using namespace std;
+class Employee
+{
+	char ename[20];
+	int eno;
+	int esalary;
+public:
+	void read()
+	{
+		cout<<"Enter name"<<endl;
+		cin>>ename;
+		cout<<"Enter enumber"<<endl;
+		cin>>eno;
+		cout<<"Enter esalary"<<endl;
+		cin>>esalary;
+	}
+	void print()
+	{
+		cout<<"Name: "<<ename<<endl;
+		cout<<"Enumber: "<<eno<<endl;
+		cout<<"Esalary: "<<esalary<<endl;
+	}
+};
+int main()
+{
+	Employee e[10];
+	int n;
+	cout<<"Enter number of employees"<<endl;
+	cin>>n;
+	for(int i=0; i<n; i++)
+	{
+		cout<<"Eneter "<<i+1<<"Employee details"<<endl;
+		e[i].read();
+	}
+	for(int i=0; i<n; i++)
+	{
+		cout<<i+1<<"Employee details"<<endl;
+		e[i].print();
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+5..
+
+
+
+
+
+
+
+
+
+ #include <iostream>
+using namespace std;
+class Sample
+{
+	int i;
+	char c;
+	double d;
+public:
+	Sample()
+	{
+		i=0;
+		c='\0';
+		d=0.0;
+	}
+	Sample(int x,char y,double z)
+	{
+		i=x;
+		c=y;
+		d=z;
+	}
+	Sample(Sample &s)
+	{
+		i=s.i;
+		c=s.c;
+		d=s.d;
+	}
+	Sample(int x,double z,char y='s')
+	{
+		i=x;
+		c=y;
+		d=z;
+
+                
+
+void display()
+{
+	cout<<"i= "<<i<<endl;
+	cout<<"c= "<<c<<endl;
+	cout<<"f= "<<d<<endl;
+}
+};
+int main()
+{
+	Sample s1;
+	cout<<"S1: "<<endl;
+	s1.display();
+	Sample s2(10,'a',5.6);
+	cout<<"S2: "<<endl;
+	s2.display();
+	Sample s3(30,4.54);
+	cout<<"S3: "<<endl;
+	s3.display();
+	Sample s4(s2);
+	cout<<"S4: "<<endl;
+	s4.display();
+	return 0;
+}
+
+
+
+
+
+6....
+
+
+
+#include <iostream>
+#include<string.h>
+using namespace std;
+class String
+{
+	int length;
+	char *name;
+public:
+	String() {}
+	String(char s[])
+	{
+		length=strlen(s);
+		name=new char[length+1];
+		strcpy(name,s);
+	}
+	void join(String A,String B)
+	{
+		length=A.length+B.length;
+		name=new char[length+1];
+		name=strcpy(name,A.name);
+		name=strcat(name,B.name);
+	}
+	void display()
+	{
+		cout<<"name= "<<name<<endl;
+	}
+};
+int main()
+{
+	String s1("wel");
+	String s2("fare");
+	cout<<"s1: "<<endl;
+	s1.display();
+	cout<<"s2: "<<endl;
+	s2.display();
+	String s3;
+	s3.join(s1,s2);
+	cout<<"s3: "<<endl;
+	s3.display();
+	String s4("come");
+	cout<<"s4: "<<endl;
+	s4.display();
+	String s5;
+	s5.join(s1,s4);
+	cout<<"s5: "<<endl;
+	s5.display();
+	String s6("done");
+	cout<<"s6: "<<endl;
+	s6.display();
+	String s7;
+	s7.join(s1,s6);
+	cout<<"s7: "<<endl;
+	s7.display();
+	return 0;
+}
+
+
+
+
+
+
+
+7...
+
+#include <iostream>
+#include<string.h>
+using namespace std;
+class Student
+{
+protected:
+	char name[20];
+	int usn;
+public:
+	void read(char n[],int u)
+	{
+		strcpy(name,n);
+		usn=u;
+	}
+	void print()
+	{
+		cout<<"name: "<<name<<endl;
+		cout<<"usn: "<<usn<<endl;
+	}
+};
+class Test:public Student
+{
+protected:
+	int sub1;
+	int sub2;
+public:
+	void getmarks(int s1,int s2)
+	{
+		sub1=s1;
+		sub2=s2;
+	}
+	void putmarks()
+	{
+		cout<<"sub1: "<<sub1<<endl;
+		cout<<"sub2: "<<sub2<<endl;
+	}
+};
+class Sports
+{
+protected:
+	int score;
+public:
+	void getscore(int s)
+	{
+		score=s;
+	}
+	void putscore()
+	{
+		cout<<"score= "<<score<<endl;
+	}
+};
+class Result:public Test,public Sports
+{
+	int total;
+public:
+	void display()
+	{
+		total=sub1+sub2+score;
+		print();
+		putmarks();
+		putscore();
+		cout<<"total: "<<total<<endl;
+	}
+};
+int main()
+{
+	Result r1;
+	r1.read("xyz",20);
+	r1.getmarks(25,35);
+	r1.getscore(3);
+	r1.display();
+	return 0;
+}
+
+
+   8.,.,.,.,
+
+#include <iostream>
+#include<string.h>
+using namespace std;
+class Student
+{
+protected:
+	char name[20];
+	int usn;
+public:
+	void read()
+	{
+		cout<<"Enter name"<<endl;
+		cin>>name;
+		cout<<"Enter usn"<<endl;
+		cin>>usn;
+	}
+	void print()
+	{
+		cout<<"name: "<<name<<endl;
+		cout<<"usn: "<<usn<<endl;
+	}
+};
+class Test:virtual public Student
+{
+
+protected:
+	int sub1;
+	int sub2;
+public:
+	void getmarks()
+	{
+		cout<<"Enter sub1 marks"<<endl;
+		cin>>sub1;
+		cout<<"Enter sub2 marks"<<endl;
+		cin>>sub2;
+	}
+	void putmarks()
+	{
+		cout<<"sub1: "<<sub1<<endl;
+		cout<<"sub2: "<<sub2<<endl;
+	}
+};
+class Sports :virtual public Student
+{
+protected:
+	int score;
+public:
+	void getscore()
+	{
+		cout<<"Enter score"<<endl;
+		cin>>score;
+	}
+	void putscore()
+	{
+		cout<<"score= "<<score<<endl;
+	}
+};
+class Result:public Test,public Sports
+{
+	int total;
+public:
+	void display()
+	{
+		total=sub1+sub2+score;
+		print();
+		putmarks();
+		putscore();
+		cout<<"total: "<<total<<endl;
+	}
+};
+int main()
+{
+	Result r[10];
+
+	int n;
+	cout<<"Enter number of students: "<<endl;
+	cin>>n;
+	for(int i=0; i<n; i++)
+	{
+		r[i].read();
+		r[i].getmarks();
+		r[i].getscore();
+	}
+	for(int i=0; i<n; i++)
+	{
+		r[i].display();
+	}
+	return 0;
+}              
+
+      </pre>
+</body>
+</html>
